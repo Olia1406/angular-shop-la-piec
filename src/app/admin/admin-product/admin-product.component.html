@@ -1,0 +1,145 @@
+<form>
+  <div class="row mt-2">
+    <div class="form-group col-4">
+      <label for="categoryChoose">Choose category</label>
+      <select [(ngModel)]="categoryName" name="categoryName" (change)="setCategory()" class="custom-select"
+        id="categoryChoose">
+        <option *ngFor="let category of categories">
+          {{ category.nameEN }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group col-4 ">
+      <label for="nameEN">Name EN</label>
+      <input [(ngModel)]="productNameEN" name="productNameEN" #pNameEN="ngModel" type="text" id="nameEN" class="form-control" required>
+    </div>
+    <div class="form-group col-4">
+      <label for="nameUA">Name UA</label>
+      <input [(ngModel)]="productNameUA" name="productNameUA" #pNameUA="ngModel" type="text" id="nameUA" class="form-control" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea [(ngModel)]="productDescription" name="productDescription" #pDescription="ngModel" class="form-control" id="description" required
+      rows="3"></textarea>
+  </div>
+  <div class="row mt-2">
+    <div class="form-group col-2">
+      <label for="weight">Weight</label>
+      <input [(ngModel)]="productWeight" name="productWeight" #pWeight="ngModel" type="text" id="weight" class="form-control" required>
+    </div>
+    <div class="form-group col-2">
+      <label for="price">Price</label>
+      <input [(ngModel)]="productPrice" name="productPrice" #pPrice="ngModel" type="number" id="price" class="form-control" required>
+    </div>
+  
+  <div style="margin-top: 32px; margin-left: 20px; " class="custom-file col-7" *ngIf="!imageStatus">
+    <input (change)="uploadFile($event)" type="file"  class="custom-file-input" id="image" required>
+    <label class="custom-file-label" for="image">Choose file...</label>
+  </div>
+</div>
+  <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
+    <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bar-striped bg-warning"
+      role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <div class="productImage mb-3 mt-3" *ngIf="imageStatus">
+    <img [src]="productImage" alt="">
+    <span (click)="deleteImage(deleteImageConfirm)">
+      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+        <path fill-rule="evenodd"
+          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+      </svg>
+    </span>
+  </div>
+  <button class="btn btn-success" type="submit" [disabled]="pNameEN.invalid || pNameUA.invalid || pDescription.invalid || pWeight.invalid || pPrice.invalid " 
+  (click)="addProduct()" [textContent]="!editStatus ? 'Add' : 'Update'"></button>
+</form>
+<hr>
+<div class="form-group">
+  <!-- <label for="nameEN">Name EN</label> -->
+  <input [(ngModel)]="searchParam" name="searchParam" placeholder="search here.." type="search" class="form-control">
+</div>
+
+<table class="table mt-3" >
+  <thead>
+    <tr>
+      <!-- <th scope="col">ID</th> -->
+      <th scope="col" [class.active]="order === 'id'" (click)="setOrder('id')">
+        ID<span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <!-- <th scope="col">Category</th> -->
+      <th scope="col" [class.active]="order === 'Category'" (click)="setOrder('Category')">
+        Category<span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <!-- <th scope="col">Name EN</th> -->
+      <th scope="col" [class.active]="order === 'NameEN'" (click)="setOrder('NameEN')">
+        Name(EN)<span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <!-- <th scope="col">Name UA</th> -->
+      <th scope="col" [class.active]="order === 'NameUA'" (click)="setOrder('NameUA')">
+        Name(UA)<span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <!-- <th scope="col">Description</th> -->
+      <th scope="col" [class.active]="order === 'Description'" (click)="setOrder('Description')">
+        Description<span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <!-- <th scope="col">Weight</th> -->
+      <th scope="col" [class.active]="order === 'Weight'" (click)="setOrder('Weight')">
+        Weight<span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <!-- <th scope="col">Price</th> -->
+      <th scope="col" [class.active]="order === 'Price'" (click)="setOrder('Price')">
+        Price<span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th scope="col">Image</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of adminProducts | searchProduct: searchParam | orderBy: order:reverse:'case-insensitive';">
+      <td>{{ prod.id }}</td>
+      <td>{{ prod.category.nameUA }}</td>
+      <td>{{ prod.nameEN }}</td>
+      <td>{{ prod.nameUA }}</td>
+      <td>{{ prod.description | slice:0:50 }}</td>
+      <td>{{ prod.weight }}</td>
+      <td>{{ prod.price }}</td>
+      <td>
+        <img [src]="prod.image" style="width: 100px; height: 100px;" alt="">
+      </td>
+      <td>
+        <input type="button" (click)="editProduct(prod)" value="edit" class="btn btn-warning">
+      </td>
+      <td>
+        <input type="button" (click)="deleteProduct(prod, deleteProductConfirm)" value="delete" class="btn btn-danger">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #deleteImageConfirm>
+  <div class="modal-body text-center">
+    <p>Do you want to confirm?</p>
+    <button type="button" class="btn btn-default ml-2" (click)="confirmImage()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>
+
+<ng-template #deleteProductConfirm>
+  <div class="modal-body text-center">
+    <!-- <p>Do you want to confirm?</p> -->
+    <button type="button" class="btn btn-dark col-5 m-2" (click)="decline()">dismiss</button>
+    <button type="button" class="btn btn-danger col-5 m-2" (click)="confirmDeleteProduct(prod)">delete</button>
+  </div>
+</ng-template>

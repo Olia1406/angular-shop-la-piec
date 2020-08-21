@@ -1,0 +1,266 @@
+{
+  "discounts": [
+    {
+      "id": 3,
+      "title": "tttttt",
+      "text": "tttttttttttttttttttttoooooooooooooooooooooooooooooooooooooooooooooooooooonbh",
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Frich_orange_small-1.jpeg?alt=media&token=7a820602-4979-4f0c-8763-e3b1cb2411ae"
+    },
+    {
+      "title": "dsf",
+      "text": "dsf",
+      "image": "https://www.lapiec-pizza.com.ua/wp-content/uploads/2020/05/aktsiya-dlya-sajta-21.jpg",
+      "id": 4
+    },
+    {
+      "id": 6,
+      "title": "sd",
+      "text": "sd",
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fkvatro-formadzhi.png?alt=media&token=f4e3517d-c87d-45aa-8a65-b6bd64a89ab1"
+    }
+  ],
+  "categories": [
+    {
+      "nameEN": "pizza",
+      "nameUA": "піца",
+      "id": 1
+    },
+    {
+      "nameEN": "salad",
+      "nameUA": "салат",
+      "id": 2
+    },
+    {
+      "nameEN": "drinks",
+      "nameUA": "напої",
+      "id": 3
+    }
+  ],
+  "products": [
+    {
+      "id": 2,
+      "category": {
+        "nameEN": "pizza",
+        "nameUA": "піца",
+        "id": 1
+      },
+      "nameEN": "kaprichoza",
+      "nameUA": "Капрічоза",
+      "description": "соус томатний, сир моцарела, шинка, свіжі гриби.",
+      "weight": "470 гр",
+      "price": 151,
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fkaprichoza-1.png?alt=media&token=3e8ff3a8-753a-454d-bb73-d948290e9d0d",
+      "count": 1
+    },
+    {
+      "category": {
+        "id": 1,
+        "nameEN": "pizza",
+        "nameUA": "піца"
+      },
+      "nameEN": "Vegetariano",
+      "nameUA": "Вегетаріано",
+      "description": "соус вершковий , сир моцарела, печериці , перець болгарський , броколлі.",
+      "weight": "495",
+      "price": 145,
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fvegetariano.png?alt=media&token=11da2ade-cd35-437b-ba43-596d98259952",
+      "count": 1,
+      "id": 3
+    },
+    {
+      "category": {
+        "id": 1,
+        "nameEN": "pizza",
+        "nameUA": "піца"
+      },
+      "nameEN": "Margaryta",
+      "nameUA": "Маргарита",
+      "description": "соус томатний, сир моцарела, помідори.",
+      "weight": "420",
+      "price": 120,
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fmargaryta.png?alt=media&token=fcedb52a-e329-4047-8988-3a485a8f55d3",
+      "count": 1,
+      "id": 4
+    },
+    {
+      "category": {
+        "id": 1,
+        "nameEN": "pizza",
+        "nameUA": "піца"
+      },
+      "nameEN": "Cezario",
+      "nameUA": "Цезаріо",
+      "description": "соус вершковий, помідори, хрусткий салат, пармезан, куряче м'ясо, сир моцарела, перепелині яйця.",
+      "weight": "600",
+      "price": 192,
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Ftsezario-1.png?alt=media&token=dfb09317-3f86-4577-8acf-83c1f80518fd",
+      "count": 1,
+      "id": 5
+    },
+    {
+      "category": {
+        "id": 1,
+        "nameEN": "pizza",
+        "nameUA": "піца"
+      },
+      "nameEN": "Dolche",
+      "nameUA": "Дольче",
+      "description": "сир моцарела, нутелла, банан, цукрова пудра, груша, топінг фруктовий.",
+      "weight": "460",
+      "price": 109,
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fdolche.png?alt=media&token=e0930777-5c24-425b-835a-736e14692275",
+      "count": 1,
+      "id": 7
+    },
+    {
+      "category": {
+        "nameEN": "salad",
+        "nameUA": "салат",
+        "id": 2
+      },
+      "nameEN": "Primavera",
+      "nameUA": "Прімавера",
+      "description": "сир моцарела, салат айсберг, помідор чері, огірок, болгарський перець, оливкова олія, фреш лимонний, орегано.",
+      "weight": "255",
+      "price": 99,
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fprimavera-big-2.jpeg?alt=media&token=c04c26fa-7e02-418e-b6d3-01820c7c7f14",
+      "count": 1,
+      "id": 8
+    },
+    {
+      "id": 10,
+      "category": {
+        "nameEN": "salad",
+        "nameUA": "салат",
+        "id": 2
+      },
+      "nameEN": "Salata di feta",
+      "nameUA": "Інсалата ді Фета",
+      "description": "Салат айсберг, свіжі овочі, сир фета, кунжут, оливки, бальзамічна заправка.",
+      "weight": "250",
+      "price": 112,
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Finsalata-big-1.jpeg?alt=media&token=fed9a6ec-ed06-4ae3-a3df-be7efdf5f424",
+      "count": 1
+    },
+    {
+      "category": {
+        "nameEN": "drinks",
+        "nameUA": "напої",
+        "id": 3
+      },
+      "nameEN": "Granat",
+      "nameUA": "Гранатовий нектар ",
+      "description": "Гранатовий нектар освітлений, ТМ “RICH”",
+      "weight": "1",
+      "price": 42,
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Frich_granat_small-1.jpeg?alt=media&token=ca682c78-b194-4583-8de5-6616680565b2",
+      "count": 1,
+      "id": 11
+    }
+  ],
+  "orders": [
+    {
+      "userName": "as",
+      "userPhone": "asdsd",
+      "userCity": "dsfsdf",
+      "userStreet": "sdf",
+      "userHouse": "sdf",
+      "userComment": "",
+      "totalPayment": 636,
+      "productOrder": [
+        {
+          "category": {
+            "nameEN": "pizza",
+            "nameUA": "піца",
+            "id": 1
+          },
+          "nameEN": "la-piec",
+          "nameUA": "Піца La П’єц",
+          "description": "соус томатний, шинка, баварські ковбаски, сир моцарела, ковбаса салямі, прошуто.",
+          "weight": "480 гр",
+          "price": 167,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-3ffab.appspot.com/o/images%2Fla-piec.png?alt=media&token=04be3b46-4eac-4210-93f5-92931cab6ed3",
+          "count": 2,
+          "id": 1
+        },
+        {
+          "category": {
+            "id": 1,
+            "nameEN": "pizza",
+            "nameUA": "піца"
+          },
+          "nameEN": "kaprichoza",
+          "nameUA": "Капрічоза",
+          "description": "соус томатний, сир моцарела, шинка, свіжі гриби.",
+          "weight": "470 гр",
+          "price": 151,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-3ffab.appspot.com/o/images%2Fkaprichoza.png?alt=media&token=ed03d0cf-a046-4062-b1e2-0375d50afd93",
+          "count": 2,
+          "id": 2
+        }
+      ],
+      "dateOrder": "2020-08-13T14:36:18.228Z",
+      "statusOrder": "В обробці",
+      "id": 1
+    },
+    {
+      "userName": "ggg",
+      "userPhone": "ggg",
+      "userCity": "ggggggggg",
+      "userStreet": "gggggggggg",
+      "userHouse": "ggggggg",
+      "userComment": "gggggggggggggggggggggggg",
+      "totalPayment": 408,
+      "productOrder": [
+        {
+          "category": {
+            "id": 1,
+            "nameEN": "pizza",
+            "nameUA": "піца"
+          },
+          "nameEN": "kaprichoza",
+          "nameUA": "Капрічоза",
+          "description": "соус томатний, сир моцарела, шинка, свіжі гриби.",
+          "weight": "470 гр",
+          "price": 151,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-3ffab.appspot.com/o/images%2Fkaprichoza.png?alt=media&token=ed03d0cf-a046-4062-b1e2-0375d50afd93",
+          "count": 1,
+          "id": 2
+        },
+        {
+          "category": {
+            "id": 1,
+            "nameEN": "pizza",
+            "nameUA": "піца"
+          },
+          "nameEN": "Vegetariano",
+          "nameUA": "Вегетаріано",
+          "description": "соус вершковий , сир моцарела, печериці , перець болгарський , броколлі.",
+          "weight": "495",
+          "price": 145,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fvegetariano.png?alt=media&token=11da2ade-cd35-437b-ba43-596d98259952",
+          "count": 1,
+          "id": 3
+        },
+        {
+          "category": {
+            "nameEN": "salad",
+            "nameUA": "салат",
+            "id": 2
+          },
+          "nameEN": "Salata di feta",
+          "nameUA": "Інсалата ді Фета",
+          "description": "Салат айсберг, свіжі овочі, сир фета, кунжут, оливки, бальзамічна заправка.",
+          "weight": "250",
+          "price": 112,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Finsalata-big-1.jpeg?alt=media&token=7bfa087e-2ab3-4ecc-84e3-b1c41bb6a0ba",
+          "count": 1,
+          "id": 10
+        }
+      ],
+      "dateOrder": "2020-08-16T16:03:55.745Z",
+      "statusOrder": "Підтвержено",
+      "id": 2
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12" *ngIf="!orders.length">
+      <div class="emptySpace80 emptySpace-lt50 emptySpace-md35 emptySpace-xs0"></div>
+      <div class="sectionTitle fadeInTop d-flex flex-column justify-content-center align-items-center"
+        style="min-height: 35vh">
+        <p>Кошик порожній.</p>
+        <a routerLink="/home" style="color: #c80000">Замовити піцу</a>
+      </div>
+    </div>
+    <div class="col-lg-12 mt-5" *ngIf="orders.length">
+      <div class="row">
+        <div class="col-lg-12 col-lg-push-6 col-my-lt-12">
+          <div class="payItems smallSlideLeft animationDelay-1">
+            <div class="table">
+              <div class="tr thead">
+                <div class="tr">
+                  <div class="td"></div>
+                  <div class="td">Товар</div>
+                  <div class="td">Ціна</div>
+                  <div class="td">Кількість</div>
+                  <div class="td">Загалом</div>
+                </div>
+              </div>
+              <div class="tr tbody">
+                <div class="tr productOrder" *ngFor="let order of orders">
+                  <div class="td">
+                    <div class="delateProduct remove-cart-product-popup open-popup" (click)="deleteProduct(order)">
+                    </div>
+                  </div>
+                  <div class="td">
+                    <div class="smallProduct">
+                      <a class="imgWrapper" [style.backgroundImage]="'url('+ order?.image +')'"></a>
+                      <div class="smallProductInfo">
+                        <h6 class="h6 as"><a>{{order?.nameUA}}</a>
+                        </h6>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="td">
+                    <div class="singleItemPrice">
+                      <span>{{order?.price}}</span><i>грн</i>
+                    </div>
+                  </div>
+                  <div class="td">
+                    <app-counter [product]="order" (changeCount)="detectChangeCount($event)"></app-counter>
+                  </div>
+                  <div class="td">
+                    <div class="itemPrice productPrice">
+                      <b class="tableMobTitle">Загалом: </b><span>{{order?.count * order?.price}}</span><i>грн</i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tr tfoot">
+                <div class="td">
+                  <div class="fullPrice cart-total">
+                    <div class="subFullPrice" style="display:none;">
+                      <span>299</span>
+                      <i>грн</i>
+                    </div>
+                    <div class="totalFullPrice" style="display:block;">
+                      <p>Загалом:</p>
+                      <span>{{totalPrice}}</span>
+                      <i>грн</i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btnWrapper txtRight fadeInTop mt-3">
+            <div class="emptySpace40 emptySpace-xs20"></div>
+            <div class="payCheckboxs text-left">
+              <label class="checkboxEntry radio ">
+                <input id="pay" type="radio" name="payment-type" value="cash" class="payment-cash"
+                  checked="checked"><span>Оплата готівкою</span>
+              </label>
+              <label class="checkboxEntry radio ml-3">
+                <input id="pay2" type="radio" name="payment-type" value="card" class="payment-card"><span>Безготівкова
+                  оплата</span>
+              </label>
+            </div>
+            <div class="emptySpace40"></div>
+          </div>
+          <div class="emptySpace-lt60 emptySpace-md45 emptySpace-xs25"></div>
+        </div>
+        <div class="col-lg-12 col-lg-pull-6 col-my-lt-12 paySelect">
+          <h6 class="h6 as smallSlideRight animationDelay-1">Оберіть спосіб доставки</h6>
+          <div class="emptySpace30"></div>
+          <div class="payForm smallSlideRight">
+            <form id="make-order-form" #orderForm="ngForm" novalidate (ngSubmit)="addOrder()">
+              <input type="hidden" name="payment_type" value="cash">
+              <div class="deliveryCheckboxs">
+                <label class="checkboxEntry radio">
+                  <input type="radio" name="delivery" value="delivery" checked="checked"><span>Доставка</span>
+                </label>
+                <label class="checkboxEntry radio ml-3">
+                  <input type="radio" name="delivery" value="driveway"><span>Самовивіз</span>
+                </label>
+                <label class="checkboxEntry radio ml-3">
+                  <input type="radio" name="delivery" value="advance"><span>Заздалегідь</span>
+                </label>
+              </div>
+              <div class="emptySpace20 emptySpace-xs15"></div>
+              <div class="inputElementWrapper">
+                <input class="inputElementItem" #name="ngModel" [(ngModel)]="userName" name="userName" type="text" placeholder="Ваше імя" required pattern="[a-zA-Z]{2,}">
+                <label>Ваше імя*</label>
+                <span class="focus-border"><i></i></span>
+                <div class="text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                  <div *ngIf="name.errors.required">
+                    Required field
+                  </div> 
+                  <div *ngIf="name.errors.pattern">
+                    Wrong name
+                  </div> 
+                </div>
+              </div>
+              <div class="emptySpace20"></div>
+              <div class="inputElementWrapper">
+                <input class="inputElementItem" type="text" [(ngModel)]="userPhone" name="userPhone" placeholder="Телефон" required>
+                <label>Телефон*</label>
+                <span class="focus-border"><i></i></span>
+              </div>
+              <div class="emptySpace20"></div>
+              <div class="inputElementWrapper">
+                <input class="inputElementItem" type="text" [(ngModel)]="userCity" name="userCity" placeholder="Місто" required>
+                <label>Місто*</label>
+                <span class="focus-border"><i></i></span>
+              </div>
+              <div class="emptySpace20"></div>
+              <div class="inputElementWrapper">
+                <input class="inputElementItem" type="text" [(ngModel)]="userStreet" name="userStreet" placeholder="Вулиця" required>
+                <label>Вулиця*</label>
+                <span class="focus-border"><i></i></span>
+              </div>
+              <div class="emptySpace20"></div>
+              <div class="inputElementWrapper">
+                <input class="inputElementItem" type="text" [(ngModel)]="userHouse" name="userHouse" placeholder="Будинок" required>
+                <label>Будинок*</label>
+                <span class="focus-border"><i></i></span>
+              </div>
+              <div class="emptySpace20"></div>
+              <div class="inputElementWrapper">
+                <textarea class="textareaElementItem" [(ngModel)]="userComments" name="userComments" maxlength="256" cols="30" rows="10" placeholder="Ваш коментар"></textarea>
+                <label>Ваш коментар</label>
+                <span class="focus-border"><i></i></span>
+              </div>
+              <div class="btnWrapper text-center mt-3">
+                <!-- <button [disabled]="true" type="submit" class="button btnColor2 orderButton make-order">ОФОРМИТИ ЗАМОВЛЕННЯ</button> -->
+                <button [disabled]="orderForm.invalid" type="submit" class="btn btn-warning">ОФОРМИТИ ЗАМОВЛЕННЯ</button>
+              </div>
+            </form>
+            <div class="emptySpace20 emptySpace-xs15"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ng-untouched -->
+<!-- ng-touched -->
+<!-- ng-pristine -->
+<!-- ng-dirty -->
+<!-- ng-invalid -->
+<!-- ng-valid -->
+<!-- ng-errors -->

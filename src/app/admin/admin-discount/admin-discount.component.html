@@ -1,0 +1,89 @@
+<!-- <h1>admin-discount works!</h1> -->
+<hr>
+<form class="form-inline">
+  <div class="form-group col-10">
+    <input type="search" class="form-control w-100" placeholder="search here.." [(ngModel)]="searchParam" name="searchParam">
+  </div>
+  <div class="col-2">
+    <button type="button" class="btn btn-success btn-block" (click)="addDiscBtn(template)">Add Discount</button>
+  </div>
+</form>
+<hr>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" [class.active]="order === 'id'" (click)="setOrder('id')">
+        #<span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th scope="col" [class.active]="order === 'title'" (click)="setOrder('title')">
+        <!-- class="mdl-data-table__cell--non-numeric"> -->
+        Title <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th scope="col" [class.active]="order === 'text'" (click)="setOrder('text')">
+        Text <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th scope="col">Image</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of adminDiscount | searchDiscount: searchParam | orderBy: order:reverse:'case-insensitive'; let i=index">
+      <td>{{ d.id }}</td>
+      <td>{{ d.title }}</td>
+      <td style="width: 300px; line-break: strict; word-break: break-all;">{{ d.text }}</td>
+      <td><img [src]="d.image" alt="" style="width: 60px; height: 60px;"></td>
+      <td>
+        <input type="button" value="edit" class="btn btn-warning" (click)="editDiscount(template, d)">
+      </td>
+      <td>
+        <input type="button" value="delete" class="btn btn-danger" (click)="deleteDiscount(d,deleteDiscountConfirm)">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" [textContent]="!editStatus ? 'Add discount' : 'Update discount'"></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModalCross()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dTitle">Title: </label>
+        <input [(ngModel)]="dTitle" name="dTitle" #titleInp="ngModel" type="text" class="form-control"  id="dTitle" required>
+      </div>
+      <div class="form-group">
+        <label for="dText">Text: </label>
+        <textarea [(ngModel)]="dText" name="dText" #textInp="ngModel" class="form-control" style="height: 150px;" id="dText" required></textarea>
+      </div>
+      <div class="custom-file">
+        <input (change)="uploadFile($event)" type="file" class="custom-file-input" id="dImage" required>
+        <label class="custom-file-label" for="dImage">Choose file...</label>
+      </div>
+      <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
+        <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bar-striped bg-warning"
+          role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <button type="button" class="btn btn-success mt-3" (click)="addDiscount()"
+      [disabled] = "titleInp.invalid || textInp.invalid"
+        [textContent]="!editStatus ? 'Add' : 'Update'"></button>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #deleteDiscountConfirm>
+  <div class="modal-body text-center">
+    <!-- <p>Do you want to confirm?</p> -->
+    <button type="button" class="btn btn-dark col-5 m-2" (click)="decline()">dismiss</button>
+    <button type="button" class="btn btn-danger col-5 m-2" (click)="confirmDeleteDiscount(d)">delete</button>
+  </div>
+</ng-template>
