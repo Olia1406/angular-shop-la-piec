@@ -16,7 +16,13 @@
       "id": 6,
       "title": "sd",
       "text": "sd",
-      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fkvatro-formadzhi.png?alt=media&token=f4e3517d-c87d-45aa-8a65-b6bd64a89ab1"
+      "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fkvatro-formadzhi.png?alt=media&token=9751ba54-a028-4167-83c9-9d82de2fb727"
+    },
+    {
+      "title": "dfsdf",
+      "text": "sdffsdf",
+      "image": "https://www.lapiec-pizza.com.ua/wp-content/uploads/2020/05/aktsiya-dlya-sajta-21.jpg",
+      "id": 7
     }
   ],
   "categories": [
@@ -200,7 +206,7 @@
         }
       ],
       "dateOrder": "2020-08-13T14:36:18.228Z",
-      "statusOrder": "В обробці",
+      "statusOrder": "Виконано",
       "id": 1
     },
     {
@@ -261,6 +267,138 @@
       "dateOrder": "2020-08-16T16:03:55.745Z",
       "statusOrder": "Підтвержено",
       "id": 2
+    },
+    {
+      "userName": "dd",
+      "userPhone": "0971401561",
+      "userCity": "Lviv",
+      "userStreet": "Zelena",
+      "userHouse": "hh1",
+      "userComment": "Ihdjewfhj erjgh jerg ",
+      "totalPayment": 109,
+      "productOrder": [
+        {
+          "category": {
+            "id": 1,
+            "nameEN": "pizza",
+            "nameUA": "піца"
+          },
+          "nameEN": "Dolche",
+          "nameUA": "Дольче",
+          "description": "сир моцарела, нутелла, банан, цукрова пудра, груша, топінг фруктовий.",
+          "weight": "460",
+          "price": 109,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fdolche.png?alt=media&token=e0930777-5c24-425b-835a-736e14692275",
+          "count": 1,
+          "id": 7
+        }
+      ],
+      "dateOrder": "2020-08-23T11:56:56.541Z",
+      "statusOrder": "В обробці",
+      "id": 3
+    },
+    {
+      "userName": "uuu",
+      "userPhone": "097 555 66 77",
+      "userCity": "lviv",
+      "userStreet": "ghffgf",
+      "userHouse": "55",
+      "userComment": "",
+      "totalPayment": 323,
+      "productOrder": [
+        {
+          "id": 10,
+          "category": {
+            "nameEN": "salad",
+            "nameUA": "салат",
+            "id": 2
+          },
+          "nameEN": "Salata di feta",
+          "nameUA": "Інсалата ді Фета",
+          "description": "Салат айсберг, свіжі овочі, сир фета, кунжут, оливки, бальзамічна заправка.",
+          "weight": "250",
+          "price": 112,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Finsalata-big-1.jpeg?alt=media&token=fed9a6ec-ed06-4ae3-a3df-be7efdf5f424",
+          "count": 2
+        },
+        {
+          "category": {
+            "nameEN": "salad",
+            "nameUA": "салат",
+            "id": 2
+          },
+          "nameEN": "Primavera",
+          "nameUA": "Прімавера",
+          "description": "сир моцарела, салат айсберг, помідор чері, огірок, болгарський перець, оливкова олія, фреш лимонний, орегано.",
+          "weight": "255",
+          "price": 99,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fprimavera-big-2.jpeg?alt=media&token=c04c26fa-7e02-418e-b6d3-01820c7c7f14",
+          "count": 1,
+          "id": 8
+        }
+      ],
+      "dateOrder": "2020-08-23T12:27:42.784Z",
+      "statusOrder": "в обробці",
+      "id": 4
+    },
+    {
+      "userName": "www",
+      "userPhone": "395 4444444  ",
+      "userCity": "ggg",
+      "userStreet": "ggg",
+      "userHouse": "77",
+      "userComment": "erjg iui4tuyyyyyyyyyyyyy eoriuti uioerutiu etueirtu erotuio etuorut34t85908 9ieugjkjh kwehj hfjh jhgjghjergkj ksjdf hjhfwefk hfhj wekhjjjjjjjjjjjjjjjjjj je  w            wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww w  w w wwwwwwwwwwwwwwwwww wwwwwwwwwwwwwwww wwwwwwww",
+      "totalPayment": 431,
+      "productOrder": [
+        {
+          "category": {
+            "id": 1,
+            "nameEN": "pizza",
+            "nameUA": "піца"
+          },
+          "nameEN": "Vegetariano",
+          "nameUA": "Вегетаріано",
+          "description": "соус вершковий , сир моцарела, печериці , перець болгарський , броколлі.",
+          "weight": "495",
+          "price": 145,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fvegetariano.png?alt=media&token=11da2ade-cd35-437b-ba43-596d98259952",
+          "count": 2,
+          "id": 3
+        },
+        {
+          "category": {
+            "nameEN": "salad",
+            "nameUA": "салат",
+            "id": 2
+          },
+          "nameEN": "Primavera",
+          "nameUA": "Прімавера",
+          "description": "сир моцарела, салат айсберг, помідор чері, огірок, болгарський перець, оливкова олія, фреш лимонний, орегано.",
+          "weight": "255",
+          "price": 99,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Fprimavera-big-2.jpeg?alt=media&token=c04c26fa-7e02-418e-b6d3-01820c7c7f14",
+          "count": 1,
+          "id": 8
+        },
+        {
+          "category": {
+            "nameEN": "drinks",
+            "nameUA": "напої",
+            "id": 3
+          },
+          "nameEN": "Granat",
+          "nameUA": "Гранатовий нектар ",
+          "description": "Гранатовий нектар освітлений, ТМ “RICH”",
+          "weight": "1",
+          "price": 42,
+          "image": "https://firebasestorage.googleapis.com/v0/b/thursday-ad1fa.appspot.com/o/images%2Frich_granat_small-1.jpeg?alt=media&token=ca682c78-b194-4583-8de5-6616680565b2",
+          "count": 1,
+          "id": 11
+        }
+      ],
+      "dateOrder": "2020-08-23T12:52:07.167Z",
+      "statusOrder": "Підтвержено",
+      "id": 5
     }
   ]
 }

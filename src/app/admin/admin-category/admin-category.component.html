@@ -13,7 +13,7 @@
 <div class="form-group">
   <input type="search" placeholder="filter category.." class="form-control" [(ngModel)]="searchName" name="searchName">
 </div>
-<table class="table">
+<table class="table" >
   <thead>
     <tr>
       <th scope="col" [class.active]="order === 'id'" (click)="setOrder('id')">
@@ -36,7 +36,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let c of adminCategory | search:searchName | orderBy: order:reverse:'case-insensitive'; let i=index">
-      <td>{{ c.id }}</td>
+      <td scope="row" style=" line-break: strict; word-break: break-all;">{{ c.id }}</td>
       <td>{{ c.nameEN }}</td>
       <td>{{ c.nameUA }}</td>
       <td>

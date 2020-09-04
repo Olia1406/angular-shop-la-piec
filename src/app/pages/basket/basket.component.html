@@ -105,7 +105,8 @@
               </div>
               <div class="emptySpace20 emptySpace-xs15"></div>
               <div class="inputElementWrapper">
-                <input class="inputElementItem" #name="ngModel" [(ngModel)]="userName" name="userName" type="text" placeholder="Ваше імя" required pattern="[a-zA-Z]{2,}">
+                <input class="inputElementItem" #name="ngModel" [(ngModel)]="userName" name="userName" type="text" 
+                placeholder="Ваше імя" required pattern="[a-zA-Z]{2,}">
                 <label>Ваше імя*</label>
                 <span class="focus-border"><i></i></span>
                 <div class="text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
@@ -119,27 +120,63 @@
               </div>
               <div class="emptySpace20"></div>
               <div class="inputElementWrapper">
-                <input class="inputElementItem" type="text" [(ngModel)]="userPhone" name="userPhone" placeholder="Телефон" required>
+                <input class="inputElementItem" #tel="ngModel" type="text" [(ngModel)]="userPhone" name="userPhone" 
+                placeholder="Телефон" required pattern="[0,9,5,6,7,8,3]{3}[ ,-]{0,1}[0-9]{3}[ ,-]{0,1}[0-9]{2}[ ,-]{0,1}[0-9]{2}[ ,-]{0,}">
                 <label>Телефон*</label>
                 <span class="focus-border"><i></i></span>
+                <div class="text-danger" *ngIf="tel.invalid && (tel.dirty || tel.touched)">
+                  <div *ngIf="tel.errors.required">
+                    Required field
+                  </div> 
+                  <div *ngIf="tel.errors.pattern">
+                    Wrong telephone number
+                  </div> 
+                </div>
               </div>
               <div class="emptySpace20"></div>
               <div class="inputElementWrapper">
-                <input class="inputElementItem" type="text" [(ngModel)]="userCity" name="userCity" placeholder="Місто" required>
+                <input class="inputElementItem" #city ="ngModel" type="text" [(ngModel)]="userCity" name="userCity" 
+                placeholder="Місто" required pattern="[a-zA-Z]{2,}">
                 <label>Місто*</label>
                 <span class="focus-border"><i></i></span>
+                <div class="text-danger" *ngIf="city.invalid && (city.dirty || city.touched)">
+                  <div *ngIf="city.errors.required">
+                    Required field
+                  </div> 
+                  <div *ngIf="city.errors.pattern">
+                    Wrong city
+                  </div> 
+                </div>
               </div>
               <div class="emptySpace20"></div>
               <div class="inputElementWrapper">
-                <input class="inputElementItem" type="text" [(ngModel)]="userStreet" name="userStreet" placeholder="Вулиця" required>
+                <input class="inputElementItem" #street ="ngModel" type="text" [(ngModel)]="userStreet" name="userStreet" 
+                placeholder="Вулиця" required pattern="[a-zA-Z]{2,}">
                 <label>Вулиця*</label>
                 <span class="focus-border"><i></i></span>
+                <div class="text-danger" *ngIf="street.invalid && (street.dirty || street.touched)">
+                  <div *ngIf="street.errors.required">
+                    Required field
+                  </div> 
+                  <div *ngIf="street.errors.pattern">
+                    Wrong street
+                  </div> 
+                </div>
               </div>
               <div class="emptySpace20"></div>
               <div class="inputElementWrapper">
-                <input class="inputElementItem" type="text" [(ngModel)]="userHouse" name="userHouse" placeholder="Будинок" required>
+                <input class="inputElementItem" #house="ngModel" type="text" [(ngModel)]="userHouse" name="userHouse" 
+                placeholder="Будинок" required pattern="[0-9]{1,}">
                 <label>Будинок*</label>
                 <span class="focus-border"><i></i></span>
+                <div class="text-danger" *ngIf="house.invalid && (house.dirty || house.touched)">
+                  <div *ngIf="house.errors.required">
+                    Required field
+                  </div> 
+                  <div *ngIf="house.errors.pattern">
+                    Wrong house 
+                  </div> 
+                </div>
               </div>
               <div class="emptySpace20"></div>
               <div class="inputElementWrapper">

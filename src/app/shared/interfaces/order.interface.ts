@@ -9,6 +9,7 @@ export interface IOrder {
     userComment: string;
     totalPayment: number;
     productOrder: Array<IProduct>;
-    dateOrder: Date;
+    // dateOrder: Date;
+    dateOrder: any;
     statusOrder: string;
 }

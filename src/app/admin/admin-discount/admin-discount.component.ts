@@ -6,7 +6,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { OrderPipe } from 'ngx-order-pipe';
 
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable, config } from 'rxjs';
+import { Observable, config, of } from 'rxjs';
+import { newArray } from '@angular/compiler/src/util';
 
 
 @Component({
@@ -47,10 +48,21 @@ export class AdminDiscountComponent implements OnInit {
   ngOnInit(): void {
     this.getAdminDiscount();
   }
+  // private getAdminDiscount(): void {
+  // this.dService.getJSONDiscount().subscribe(data => {
+  // this.adminDiscount = data;
+  // });
+  // }
+
   private getAdminDiscount(): void {
-    this.dService.getJSONDiscount().subscribe(data => {
-      this.adminDiscount = data;
-    });
+    this.dService.getFireCloudDiscount().subscribe(collection => {
+      // console.log(collection);
+      this.adminDiscount = collection.map(document => {
+        const data = document.payload.doc.data() as IDiscount;
+        const id = document.payload.doc.id;
+        return { id, ...data };
+      })
+    })
   }
 
   setOrder(value: string) {
@@ -75,16 +87,23 @@ export class AdminDiscountComponent implements OnInit {
   addDiscount(): void {
     const newDiscount = new Discount(this.dID, this.dTitle, this.dText, this.dImage);
     if (this.editStatus == true) {
-      this.dService.updateJSONDiscount(newDiscount).subscribe(() => {
-        this.getAdminDiscount();
-      })
+      // this.dService.updateJSONDiscount(newDiscount).subscribe(() => {
+      // this.getAdminDiscount();
+      // })
+      this.dService.updateFireCloudDiscount({ ...newDiscount })
+        .then(() => this.getAdminDiscount())
+        .catch(error => console.log(error));
+
       this.editStatus = false;
     }
     else {
       delete newDiscount.id;
-      this.dService.postJSONDiscount(newDiscount).subscribe(() => {
-        this.getAdminDiscount();
-      });
+      // this.dService.postJSONDiscount(newDiscount).subscribe(() => {
+      // this.getAdminDiscount();
+      // });
+      this.dService.postFireCloudDiscount({ ...newDiscount })
+        .then(() => this.getAdminDiscount())
+        .catch(error => console.log(error));
     }
     this.modalRef.hide();
     this.resetForm();
@@ -119,9 +138,13 @@ export class AdminDiscountComponent implements OnInit {
   }
   confirmDeleteDiscount(discount: IDiscount): void {
     discount = this.currDiscount;
-    this.dService.deleteJSONDiscount(discount.id).subscribe(() => {
-      this.getAdminDiscount();
-    });
+    // this.dService.deleteJSONDiscount(discount.id).subscribe(() => {
+    // this.getAdminDiscount();
+    // });
+    this.dService.deleteFireCloudDiscount(discount)
+      .then(() => this.getAdminDiscount())
+      .catch(error => console.log(error));
+
     this.modalRef.hide();
     this.afStorage.storage.refFromURL(discount.image).delete();
   }

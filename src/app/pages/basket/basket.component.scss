@@ -266,121 +266,6 @@
   color: #c80000;
 }
 
-/*Inputs*/
-label {
-  position: relative;
-  display: block;
-  /*Light inputs*/
-}
-
-label:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 0;
-  background: #0e0e0e;
-  z-index: 2;
-  content: '';
-  -webkit-transition: height 300ms linear;
-  -o-transition: height 300ms linear;
-  transition: height 300ms linear;
-}
-
-label:after {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 1px;
-  height: 0;
-  background: #0e0e0e;
-  -webkit-transition: height 300ms linear;
-  -o-transition: height 300ms linear;
-  transition: height 300ms linear;
-  z-index: 2;
-  content: '';
-}
-
-label .firstBorderElement:before {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  background: #0e0e0e;
-  -webkit-transition: width 375ms linear;
-  -o-transition: width 375ms linear;
-  transition: width 375ms linear;
-  z-index: 2;
-  content: '';
-}
-
-label .firstBorderElement:after {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  background: #0e0e0e;
-  -webkit-transition: width 375ms linear;
-  -o-transition: width 375ms linear;
-  transition: width 375ms linear;
-  z-index: 2;
-  content: '';
-}
-
-label .secondBorderElement:before {
-  position: absolute;
-  top: 0;
-  right: 50%;
-  width: 0;
-  height: 1px;
-  background: #0e0e0e;
-  -webkit-transition: width 375ms linear;
-  -o-transition: width 375ms linear;
-  transition: width 375ms linear;
-  z-index: 2;
-  content: '';
-}
-
-label .secondBorderElement:after {
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  width: 0;
-  height: 1px;
-  background: #0e0e0e;
-  -webkit-transition: width 375ms linear;
-  -o-transition: width 375ms linear;
-  transition: width 375ms linear;
-  z-index: 2;
-  content: '';
-}
-
-label.active:before, label.active:after {
-  height: 100%;
-}
-
-label.active .firstBorderElement:before, label.active .firstBorderElement:after,
-label.active .secondBorderElement:before,
-label.active .secondBorderElement:after {
-  width: 50%;
-}
-
-label.light .simpleInput {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #fff;
-}
-
-label.light:before, label.light:after {
-  background: #fff;
-}
-
-label.light .firstBorderElement:before, label.light .firstBorderElement:after,
-label.light .secondBorderElement:before,
-label.light .secondBorderElement:after {
-  background: #fff;
-}
 
 .inputWrapper {
   position: relative;
@@ -527,11 +412,11 @@ label.light textarea:-ms-input-placeholder {
   display: none;
 }
 
-.checkboxEntry input:checked + span:before {
+.checkboxEntry input:checked+span:before {
   background-position: center center;
 }
 
-.checkboxEntry input:checked + span:after {
+.checkboxEntry input:checked+span:after {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
@@ -548,38 +433,9 @@ label.light textarea:-ms-input-placeholder {
   font-weight: 600;
 }
 
-.checkboxEntry span:before {
-  position: absolute;
-  top: 4px;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  border: 2px #f7c200 solid;
-  -webkit-border-radius: 1px;
-  border-radius: 1px;
-  background: url(../../../assets/images/icon-6.png) 100px center no-repeat;
-  z-index: 1;
-  content: "";
-}
 
-.checkboxEntry span:after {
-  position: absolute;
-  top: 4px;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  background: #f7c200;
-  -webkit-transform: scale(0.05);
-  -ms-transform: scale(0.05);
-  transform: scale(0.05);
-  opacity: 1;
-  -webkit-transition: opacity .450s linear, -webkit-transform .450s linear;
-  transition: opacity .450s linear, -webkit-transform .450s linear;
-  -o-transition: opacity .450s linear, transform .450s linear;
-  transition: opacity .450s linear, transform .450s linear;
-  transition: opacity .450s linear, transform .450s linear, -webkit-transform .450s linear;
-  content: '';
-}
+
+
 
 .checkboxEntry.radio span:before {
   -webkit-border-radius: 10px;
@@ -610,7 +466,8 @@ label.light textarea:-ms-input-placeholder {
   width: 100%;
 }
 
-.SumoSelect:before, .SumoSelect:after {
+.SumoSelect:before,
+.SumoSelect:after {
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -633,7 +490,8 @@ label.light textarea:-ms-input-placeholder {
   border: 1px solid #e6e6e6;
 }
 
-.SumoSelect .CaptionCont:before, .SumoSelect .CaptionCont:after {
+.SumoSelect .CaptionCont:before,
+.SumoSelect .CaptionCont:after {
   position: absolute;
   top: 0;
   left: 50%;
@@ -652,7 +510,8 @@ label.light textarea:-ms-input-placeholder {
   right: 50%;
 }
 
-.SumoSelect .CaptionCont > span:before, .SumoSelect .CaptionCont > span:after {
+.SumoSelect .CaptionCont>span:before,
+.SumoSelect .CaptionCont>span:after {
   position: absolute;
   top: 0;
   left: 0;
@@ -666,14 +525,15 @@ label.light textarea:-ms-input-placeholder {
   content: '';
 }
 
-.SumoSelect .CaptionCont > span:after {
+.SumoSelect .CaptionCont>span:after {
   top: auto;
   left: auto;
   right: 0;
   bottom: 0;
 }
 
-.SumoSelect .CaptionCont > span, .SumoSelect .CaptionCont label {
+.SumoSelect .CaptionCont>span,
+.SumoSelect .CaptionCont label {
   cursor: pointer;
 }
 
@@ -699,24 +559,28 @@ label.light textarea:-ms-input-placeholder {
   padding: 10px 15px;
 }
 
-.SumoSelect .optWrapper .options li.opt:first-child, .SumoSelect .optWrapper .options li.opt:last-child {
+.SumoSelect .optWrapper .options li.opt:first-child,
+.SumoSelect .optWrapper .options li.opt:last-child {
   -webkit-border-radius: 0;
   border-radius: 0;
 }
 
-.SumoSelect.open .CaptionCont > span:before, .SumoSelect.open .CaptionCont > span:after {
+.SumoSelect.open .CaptionCont>span:before,
+.SumoSelect.open .CaptionCont>span:after {
   height: 100%;
 }
 
-.SumoSelect.open .CaptionCont:before, .SumoSelect.open .CaptionCont:after {
+.SumoSelect.open .CaptionCont:before,
+.SumoSelect.open .CaptionCont:after {
   width: 50%;
 }
 
-.SumoSelect.open:before, .SumoSelect.open:after {
+.SumoSelect.open:before,
+.SumoSelect.open:after {
   width: 50%;
 }
 
-.SumoSelect.open > .optWrapper {
+.SumoSelect.open>.optWrapper {
   top: 50px;
 }
 
@@ -726,7 +590,8 @@ label.light textarea:-ms-input-placeholder {
   position: relative;
 }
 
-.inputElementItem, .textareaElementItem {
+.inputElementItem,
+.textareaElementItem {
   border: 1px solid #ccc;
   padding: 9px 14px;
   transition: 0.4s;
@@ -738,10 +603,10 @@ label.light textarea:-ms-input-placeholder {
   letter-spacing: 1px;
 }
 
-.inputElementItem ~ .focus-border:before,
-.inputElementItem ~ .focus-border:after,
-.textareaElementItem ~ .focus-border:before,
-.textareaElementItem ~ .focus-border:after {
+.inputElementItem~.focus-border:before,
+.inputElementItem~.focus-border:after,
+.textareaElementItem~.focus-border:before,
+.textareaElementItem~.focus-border:after {
   content: "";
   position: absolute;
   top: -1px;
@@ -752,16 +617,16 @@ label.light textarea:-ms-input-placeholder {
   transition: 0.4s;
 }
 
-.inputElementItem ~ .focus-border:after,
-.textareaElementItem ~ .focus-border:after {
+.inputElementItem~.focus-border:after,
+.textareaElementItem~.focus-border:after {
   top: auto;
   bottom: 0;
 }
 
-.inputElementItem ~ .focus-border i:before,
-.inputElementItem ~ .focus-border i:after,
-.textareaElementItem ~ .focus-border i:before,
-.textareaElementItem ~ .focus-border i:after {
+.inputElementItem~.focus-border i:before,
+.inputElementItem~.focus-border i:after,
+.textareaElementItem~.focus-border i:before,
+.textareaElementItem~.focus-border i:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -772,32 +637,32 @@ label.light textarea:-ms-input-placeholder {
   transition: 0.6s;
 }
 
-.inputElementItem ~ .focus-border i:after,
-.textareaElementItem ~ .focus-border i:after {
+.inputElementItem~.focus-border i:after,
+.textareaElementItem~.focus-border i:after {
   left: auto;
   right: 0;
 }
 
-.inputElementItem:focus ~ .focus-border:before,
-.inputElementItem:focus ~ .focus-border:after,
-.textareaElementItem:focus ~ .focus-border:before,
-.textareaElementItem:focus ~ .focus-border:after {
+.inputElementItem:focus~.focus-border:before,
+.inputElementItem:focus~.focus-border:after,
+.textareaElementItem:focus~.focus-border:before,
+.textareaElementItem:focus~.focus-border:after {
   left: 0;
   width: 100%;
   transition: 0.4s;
 }
 
-.inputElementItem:focus ~ .focus-border i:before,
-.inputElementItem:focus ~ .focus-border i:after,
-.textareaElementItem:focus ~ .focus-border i:before,
-.textareaElementItem:focus ~ .focus-border i:after{
+.inputElementItem:focus~.focus-border i:before,
+.inputElementItem:focus~.focus-border i:after,
+.textareaElementItem:focus~.focus-border i:before,
+.textareaElementItem:focus~.focus-border i:after {
   top: -1px;
   height: 100%;
   transition: 0.6s;
 }
 
-.inputElementItem ~ label,
-.textareaElementItem ~ label {
+.inputElementItem~label,
+.textareaElementItem~label {
   position: absolute;
   left: 14px;
   width: 100%;
@@ -813,8 +678,8 @@ label.light textarea:-ms-input-placeholder {
   color: transparent;
 }
 
-.inputElementItem:focus ~ label,
-.textareaElementItem:focus ~ label {
+.inputElementItem:focus~label,
+.textareaElementItem:focus~label {
   top: -18px;
   left: 0;
   font-size: 12px;
@@ -822,8 +687,8 @@ label.light textarea:-ms-input-placeholder {
   transition: 0.3s;
 }
 
-.inputElementItem:not(:placeholder-shown):not([value=""]) ~ label,
-.textareaElementItem:not(:placeholder-shown):not([value=""]) ~ label {
+.inputElementItem:not(:placeholder-shown):not([value=""])~label,
+.textareaElementItem:not(:placeholder-shown):not([value=""])~label {
   top: -18px;
   left: 0;
   font-size: 12px;

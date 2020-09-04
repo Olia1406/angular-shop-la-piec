@@ -63,12 +63,12 @@
       <!-- <div *ngIf="enter" class="headerSection user-block"> -->
         <!-- <a [textContent]= " adm ? 'Admin' : 'Кабінет'">Admin</a> -->
       <!-- </div> -->
-      <div  class="headerSection user-block">
+      <div  class="headerSection user-block" *ngIf="!loginStatus">
         <a (click)="loginModal(loginForm)" >Увійти</a>
       </div>
-       <!-- <div class="headerSection user-block"> -->
-         <!-- <a [routerLink]="[ '/admin' ]" >Admin</a> -->
-       <!-- </div> -->
+       <div class="headerSection user-block" *ngIf="loginStatus">
+         <a [routerLink]="[ '/'+loginUrl ]" >{{ loginName | titlecase }}</a>
+       </div>
     </div>
   </div>
 </header>

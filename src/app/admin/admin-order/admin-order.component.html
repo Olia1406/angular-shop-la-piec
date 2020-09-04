@@ -3,24 +3,24 @@
     <tr>
       <th scope="col">DEl</th>
       <th scope="col">ID</th>
-      <th scope="col">userName</th>
-      <th scope="col">userPhone</th>
-      <th scope="col">totalPayment</th>
-      <th scope="col">dateOrder</th>
+      <th scope="col" style="word-break: break-all;">userName</th>
+      <th scope="col" style="word-break: break-all;">userPhone</th>
+      <th scope="col" style="word-break: break-all;">totalPayment</th>
+      <!-- <th scope="col">dateOrder</th> -->
       <th scope="col">Status</th>
       <th scope="col">Details</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let order of adminOrders; let i=index">
-      <td  (click)="deleteUserOrder(order)"><span class="cr">&times;</span></td>
-      <td>{{ order.id }}</td>
+      <td scope="row" (click)="deleteUserOrder(order)"><span class="crosss">&times;</span></td>
+      <td style=" min-width:70px; word-break: break-all;">{{ order.id }}</td>
       <td>{{ order.userName }}</td>
       <td>{{ order.userPhone }}</td>
       <td>{{ order.totalPayment }} грн</td>
-      <td>{{ order.dateOrder | date:'M/d/yy, hh:mm a'}}</td>
+      <!-- <td>{{ order.dateOrder | date:'dd.MM.yyyy, hh:mm a'}}</td> -->
       <td>{{ order.statusOrder }}</td>
- 
+
       <td>
         <input type="button" value="details" class="btn btn-info" (click)="openDetailsModal(detailsForm,order)">
       </td>
@@ -29,56 +29,63 @@
 </table>
 
 
-<ng-template #detailsForm >
+<ng-template #detailsForm>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Detils: user <span style="color: brown;">{{currAdmOrder.userName}}</span></h4>
+    <h6 class="modal-title pull-left">Detils: user <span style="color: brown;">{{currAdmOrder.userName}}</span></h6>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <!-- This is a modal. -->
-    <table class="table" style="max-width: width inherit; padding: 15px; ">
+    <table class="table" style="padding: 15px; ">
       <thead>
         <tr>
           <!-- <td>Видалити</td> -->
           <th>Категорія</th>
-          <th>Назва продукту</th>
-          <th>Кількість</th>
-          <th>Ціна</th>
-          <th>Сума</th>
+          <th>Назва</th>
+          <th>Ксть</th>
+          <th>Ціна,грн</th>
+          <th>Сума,грн</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let admProdOrder of currAdmOrder.productOrder; let i = index">
-            <!-- <td (click)="deleteProduct(admOrder)"><span> &times; </span></td> -->
-            <td>{{admProdOrder.category.nameUA}}</td>
-            <td>{{admProdOrder.nameUA}} </td>
-            <td>{{admProdOrder.count}} </td>
+          <!-- <td (click)="deleteProduct(admOrder)"><span> &times; </span></td> -->
+          <td>{{admProdOrder.category.nameUA}}</td>
+          <td>{{admProdOrder.nameUA}} </td>
+          <td>{{admProdOrder.count}} </td>
 
-            <!-- <td> -->
-            <!-- <app-counter [product]="prodOrder"></app-counter> -->
-            <!-- </td> -->
-            <td>{{admProdOrder.price}} грн</td>
-            <td>{{admProdOrder.count * admProdOrder.price}} грн</td>
+          <!-- <td> -->
+          <!-- <app-counter [product]="prodOrder"></app-counter> -->
+          <!-- </td> -->
+          <td>{{admProdOrder.price}}</td>
+          <td>{{admProdOrder.count * admProdOrder.price}}</td>
         </tr>
-  </tbody>
-  </table>
-  <div style="float: right; padding-bottom: 5px; font-size: 18px; font-weight: 600;">
-    Загальна сума: {{totalPrice}} грн
+      </tbody>
+    </table>
+    <div style="float: right; font-size: 18px; font-weight: 600;">
+      Загальна сума: {{totalPrice}} грн
     </div>
   </div>
-  <form > 
-    <div class="input-group m-3 col-10" >
+  <div *ngIf="currAdmOrder.userComment!==''" style="margin-top: -30px;">
+    <span class="ml-2 mb-2">Коментар клієнта:</span>
+    <div class="ml-2 border p-2"
+      style="width: 470px; max-height: 70px; line-break: strict; word-break: break-all; overflow-y: scroll;">
+      {{currAdmOrder.userComment}}</div>
+  </div>
+  <form>
+    <div class="input-group m-3 col-10">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Оберіть статус замовлення</label>
       </div>
-      <select id="inputGroupSelect01" class="custom-select" [(ngModel)]="statusOption" name="statusOption" (change)="changeStatus()">
-         <option value ="В обробці" selected></option>
-         <option value ="В обробці">В обробці</option>
-         <option value="Підтвержено">Підтвержено</option>
-         <option value="Виконано">Виконано</option>
-         <option value="Скасовано">Скасовано</option>
+      <select id="inputGroupSelect01" class="custom-select" [(ngModel)]="statusOption" name="statusOption"
+        (change)="changeStatus()">
+        <option value="В обробці" selected></option>
+        <option value="В обробці">В обробці</option>
+        <option value="Підтвержено">Підтвержено</option>
+        <option value="Виконано">Виконано</option>
+        <option value="Скасовано">Скасовано</option>
       </select>
     </div>
   </form>

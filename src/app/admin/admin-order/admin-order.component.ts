@@ -26,18 +26,35 @@ export class AdminOrderComponent implements OnInit {
   ngOnInit(): void {
     this.getOrders();
   }
+  // private getOrders(): void {
+  // this.ordersService.getOrder().subscribe(
+  // data => {
+  // this.adminOrders = data;
+  // this.adminOrders.sort(function (a, b) {
+  // return Date.parse(b.dateOrder.toString()) - Date.parse(a.dateOrder.toString());
+  // })
+  // }
+  // );
+  // }
+
   private getOrders(): void {
-    this.ordersService.getOrder().subscribe(
-      data => {
-        this.adminOrders = data;
-        this.adminOrders.sort(function (a, b) {
-          return Date.parse(b.dateOrder.toString()) - Date.parse(a.dateOrder.toString());
-        })
+    this.ordersService.getFireCloudOrder().subscribe(
+      collection => {
+        this.adminOrders = collection.map(document => {
+          const data = document.payload.doc.data() as IOrder;
+          const id = document.payload.doc.id;
+          return { id, ...data };
+        });
+        // this.adminOrders.sort(function (a, b) {
+        // return Date.parse(b.dateOrder.toString()) - Date.parse(a.dateOrder.toString());
+        //  })
       }
     );
   }
+
   openDetailsModal(template: TemplateRef<any>, order: IOrder): void {
     this.currAdmOrder = order;
+    // console.log(this.currAdmOrder);
     this.statusOption = 'В обробці';
     this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered' });
     this.getTotal();
@@ -47,19 +64,40 @@ export class AdminOrderComponent implements OnInit {
     this.totalPrice = this.currAdmOrder.productOrder.reduce((total, prod) => total + (prod.price * prod.count), 0);
   }
 
+  // changeStatus(): void {
+  // this.currAdmOrder.statusOrder = this.statusOption;
+  // this.ordersService.updateOrder(this.currAdmOrder)
+  // .subscribe(() => {
+  // this.getOrders();
+  // })
+  // }
   changeStatus(): void {
     this.currAdmOrder.statusOrder = this.statusOption;
-    this.ordersService.updateOrder(this.currAdmOrder)
-      .subscribe(() => {
+    this.ordersService.updateFireCloudOrder(this.currAdmOrder)
+      .then(() => {
         this.getOrders();
       })
+      .catch(error => console.log(error))
   }
+
+  // deleteUserOrder(order: IOrder): void {
+  // if (order.statusOrder == 'Виконано' || order.statusOrder == 'Скасовано') {
+  // this.ordersService.deleteOrder(order).subscribe(() => {
+  // this.getOrders();
+  // })
+  // }
+  // }
+
 
   deleteUserOrder(order: IOrder): void {
     if (order.statusOrder == 'Виконано' || order.statusOrder == 'Скасовано') {
-      this.ordersService.deleteOrder(order).subscribe(() => {
-        this.getOrders();
-      })
+      if (confirm('Are you sure?')) {
+        this.ordersService.deleteFireCloudOrder(order)
+          .then(() => {
+            this.getOrders();
+          })
+          .catch(error => console.log(error));
+      }
     }
   }
 

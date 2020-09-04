@@ -2,50 +2,50 @@
 <hr>
 <form class="form-inline">
   <div class="form-group col-10">
-    <input type="search" class="form-control w-100" placeholder="search here.." [(ngModel)]="searchParam" name="searchParam">
+    <input type="search" class="form-control w-100" placeholder="search here.." [(ngModel)]="searchParam"
+      name="searchParam">
   </div>
   <div class="col-2">
     <button type="button" class="btn btn-success btn-block" (click)="addDiscBtn(template)">Add Discount</button>
   </div>
 </form>
 <hr>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col" [class.active]="order === 'id'" (click)="setOrder('id')">
-        #<span [hidden]="reverse">▼</span>
-        <span [hidden]="!reverse">▲</span>
-      </th>
-      <th scope="col" [class.active]="order === 'title'" (click)="setOrder('title')">
-        <!-- class="mdl-data-table__cell--non-numeric"> -->
-        Title <span [hidden]="reverse">▼</span>
-        <span [hidden]="!reverse">▲</span>
-      </th>
-      <th scope="col" [class.active]="order === 'text'" (click)="setOrder('text')">
-        Text <span [hidden]="reverse">▼</span>
-        <span [hidden]="!reverse">▲</span>
-      </th>
-      <th scope="col">Image</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let d of adminDiscount | searchDiscount: searchParam | orderBy: order:reverse:'case-insensitive'; let i=index">
-      <td>{{ d.id }}</td>
-      <td>{{ d.title }}</td>
-      <td style="width: 300px; line-break: strict; word-break: break-all;">{{ d.text }}</td>
-      <td><img [src]="d.image" alt="" style="width: 60px; height: 60px;"></td>
-      <td>
-        <input type="button" value="edit" class="btn btn-warning" (click)="editDiscount(template, d)">
-      </td>
-      <td>
-        <input type="button" value="delete" class="btn btn-danger" (click)="deleteDiscount(d,deleteDiscountConfirm)">
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table" >
+    <thead>
+      <tr>
+        <th scope="col " [class.active]="order === 'id'" (click)="setOrder('id')">
+          #<span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th scope="col" [class.active]="order === 'title'" (click)="setOrder('title')">
+          <!-- class="mdl-data-table__cell--non-numeric"> -->
+          Title <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th scope="col" [class.active]="order === 'text'" (click)="setOrder('text')">
+          Text <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th scope="col">Image</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of adminDiscount | searchDiscount: searchParam | orderBy: order:reverse:'case-insensitive'; let i=index">
+        <td scope="row" style=" line-break: strict; word-break: break-all;">{{ d.id }}</td>
+        <td>{{ d.title }}</td>
+        <td style=" line-break: strict; word-break: break-all; overflow: hidden;">{{ d.text }}</td>
+        <td><img [src]="d.image" alt="" style="width: 60px; height: 60px;"></td>
+        <td>
+          <input type="button" value="edit" class="btn btn-warning" (click)="editDiscount(template, d)">
+        </td>
+        <td>
+          <input type="button" value="delete" class="btn btn-danger" (click)="deleteDiscount(d,deleteDiscountConfirm)">
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 
 <ng-template #template>
@@ -59,11 +59,13 @@
     <form>
       <div class="form-group">
         <label for="dTitle">Title: </label>
-        <input [(ngModel)]="dTitle" name="dTitle" #titleInp="ngModel" type="text" class="form-control"  id="dTitle" required>
+        <input [(ngModel)]="dTitle" name="dTitle" #titleInp="ngModel" type="text" class="form-control" id="dTitle"
+          required>
       </div>
       <div class="form-group">
         <label for="dText">Text: </label>
-        <textarea [(ngModel)]="dText" name="dText" #textInp="ngModel" class="form-control" style="height: 150px;" id="dText" required></textarea>
+        <textarea [(ngModel)]="dText" name="dText" #textInp="ngModel" class="form-control" style="height: 150px;"
+          id="dText" required></textarea>
       </div>
       <div class="custom-file">
         <input (change)="uploadFile($event)" type="file" class="custom-file-input" id="dImage" required>
@@ -74,8 +76,7 @@
           role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <button type="button" class="btn btn-success mt-3" (click)="addDiscount()"
-      [disabled] = "titleInp.invalid || textInp.invalid"
-        [textContent]="!editStatus ? 'Add' : 'Update'"></button>
+        [disabled]="titleInp.invalid || textInp.invalid" [textContent]="!editStatus ? 'Add' : 'Update'"></button>
     </form>
   </div>
 </ng-template>

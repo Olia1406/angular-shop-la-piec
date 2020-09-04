@@ -67,37 +67,37 @@
   <thead>
     <tr>
       <!-- <th scope="col">ID</th> -->
-      <th scope="col" [class.active]="order === 'id'" (click)="setOrder('id')">
+      <th scope="col" style="width: 70px;" [class.active]="order === 'id'" (click)="setOrder('id')">
         ID<span [hidden]="reverse">▼</span>
         <span [hidden]="!reverse">▲</span>
       </th>
       <!-- <th scope="col">Category</th> -->
-      <th scope="col" [class.active]="order === 'Category'" (click)="setOrder('Category')">
+      <th scope="col" style="word-break: break-all;" [class.active]="order === 'category'" (click)="setOrder('category')">
         Category<span [hidden]="reverse">▼</span>
         <span [hidden]="!reverse">▲</span>
       </th>
       <!-- <th scope="col">Name EN</th> -->
-      <th scope="col" [class.active]="order === 'NameEN'" (click)="setOrder('NameEN')">
-        Name(EN)<span [hidden]="reverse">▼</span>
+      <th scope="col" style="word-break: break-all;" [class.active]="order === 'nameEN'" (click)="setOrder('nameEN')">
+        Name (EN)<span [hidden]="reverse">▼</span>
         <span [hidden]="!reverse">▲</span>
       </th>
       <!-- <th scope="col">Name UA</th> -->
-      <th scope="col" [class.active]="order === 'NameUA'" (click)="setOrder('NameUA')">
-        Name(UA)<span [hidden]="reverse">▼</span>
+      <th scope="col" style="word-break: break-all;" [class.active]="order === 'nameUA'" (click)="setOrder('nameUA')">
+        Name (UA)<span [hidden]="reverse">▼</span>
         <span [hidden]="!reverse">▲</span>
       </th>
       <!-- <th scope="col">Description</th> -->
-      <th scope="col" [class.active]="order === 'Description'" (click)="setOrder('Description')">
+      <th scope="col" style="word-break: break-all;" [class.active]="order === 'description'" (click)="setOrder('description')">
         Description<span [hidden]="reverse">▼</span>
         <span [hidden]="!reverse">▲</span>
       </th>
       <!-- <th scope="col">Weight</th> -->
-      <th scope="col" [class.active]="order === 'Weight'" (click)="setOrder('Weight')">
+      <th scope="col" style="word-break: break-all;" [class.active]="order === 'weight'" (click)="setOrder('weight')">
         Weight<span [hidden]="reverse">▼</span>
         <span [hidden]="!reverse">▲</span>
       </th>
       <!-- <th scope="col">Price</th> -->
-      <th scope="col" [class.active]="order === 'Price'" (click)="setOrder('Price')">
+      <th scope="col" style="word-break: break-all;" [class.active]="order === 'price'" (click)="setOrder('price')">
         Price<span [hidden]="reverse">▼</span>
         <span [hidden]="!reverse">▲</span>
       </th>
@@ -107,12 +107,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let prod of adminProducts | searchProduct: searchParam | orderBy: order:reverse:'case-insensitive';">
-      <td>{{ prod.id }}</td>
+    <tr *ngFor="let prod of adminProducts | searchProduct: searchParam | orderBy: order:reverse:'case-insensitive'; let i=index">
+      <td scope="row" style=" min-width:50px; word-break: break-all;">{{ prod.id }}</td>
       <td>{{ prod.category.nameUA }}</td>
-      <td>{{ prod.nameEN }}</td>
-      <td>{{ prod.nameUA }}</td>
-      <td>{{ prod.description | slice:0:50 }}</td>
+      <td style=" min-width: 70px;  word-break: break-all;">{{ prod.nameEN }}</td>
+      <td style=" min-width: 70px; word-break: break-all;">{{ prod.nameUA }}</td>
+      <td style=" min-width: 70px; max-width: 120px; word-break: break-all;">{{ prod.description | slice:0:50 }}</td>
       <td>{{ prod.weight }}</td>
       <td>{{ prod.price }}</td>
       <td>

@@ -50,8 +50,10 @@ export class AdminProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.adminJSONCategories();
-    this.getProducts();
+    // this.adminJSONCategories();
+    this.adminFireCloudCategories();
+    // this.getProducts();
+    this.adminFireCloudProducts();
   }
   setOrder(value: string) {
     if (this.order === value) {
@@ -60,16 +62,40 @@ export class AdminProductComponent implements OnInit {
     this.order = value;
   }
 
-  private adminJSONCategories(): void {
-    this.catService.getJSONCategory().subscribe(data => {
-      this.categories = data;
-    });
+  // private adminJSONCategories(): void {
+  // this.catService.getJSONCategory().subscribe(data => {
+  // this.categories = data;
+  // });
+  // }
+
+  private adminFireCloudCategories(): void {
+    this.catService.getFireCloudCategory().subscribe(
+      collection => {
+        this.categories = collection.map(document => {
+          const data = document.payload.doc.data() as ICategory;
+          const id = document.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
   }
 
-  private getProducts(): void {
-    this.prodService.getJSONProduct().subscribe(data => {
-      this.adminProducts = data;
-    });
+  // private getProducts(): void {
+  // this.prodService.getJSONProduct().subscribe(data => {
+  // this.adminProducts = data;
+  // });
+  // }
+
+  private adminFireCloudProducts(): void {
+    this.prodService.getFireCloudProduct().subscribe(
+      collection => {
+        this.adminProducts = collection.map(document => {
+          const data = document.payload.doc.data() as IProduct;
+          const id = document.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
   }
 
   setCategory(): void {
@@ -87,16 +113,22 @@ export class AdminProductComponent implements OnInit {
       this.productImage);
     // delete newProd.id;
     if (this.editStatus == true) {
-      this.prodService.updateJSONProduct(newProd).subscribe(() => {
-        this.getProducts();
-      })
+      // this.prodService.updateJSONProduct(newProd).subscribe(() => {
+      // this.getProducts();
+      // })
+      this.prodService.updateFireCloudProduct({ ...newProd })
+        .then(message => console.log(message))
+        .catch(err => console.log(err));
       this.editStatus = false;
     }
     else {
       delete newProd.id;
-      this.prodService.postJSONProduct(newProd).subscribe(() => {
-        this.getProducts();
-      });
+      // this.prodService.postJSONProduct(newProd).subscribe(() => {
+      // this.getProducts();
+      // });
+      this.prodService.postFireCloudProduct({ ...newProd })
+        .then(message => console.log(message))
+        .catch(err => console.log(err));
     }
     this.resetForm();
   }
@@ -151,12 +183,17 @@ export class AdminProductComponent implements OnInit {
 
   confirmDeleteProduct(product: IProduct): void {
     product = this.currProduct;
-    if ( product.image !== 'https://probapera.org/content/publication/PH19623_2.JPG') {
+    if (product.image !== 'https://probapera.org/content/publication/PH19623_2.JPG') {
       this.afStorage.storage.refFromURL(product.image).delete();
     }
-    this.prodService.deleteJSONProduct(product.id).subscribe(() => {
-      this.getProducts();
-    });
+    // this.prodService.deleteJSONProduct(product.id).subscribe(() => {
+      // this.getProducts();
+      // this.adminFireCloudProducts();
+    // });
+    this.prodService.deleteFireCloudProduct(product.id.toString())
+    // .then(() => this.adminFireCloudProducts())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
     this.modalRef.hide();
   }
 

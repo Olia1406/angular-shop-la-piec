@@ -66,13 +66,18 @@ export class BasketComponent implements OnInit {
                             this.userComments,
                             this.totalPrice,
                             this.orders,
-                            new Date());
+                            new Date())
+                            // new Date().getTime())
+                            // new Date().toLocaleDateString())
     delete order.id;
-    this.ordersService.addOrder(order).subscribe(
-      () => {
-        this.resetOrder();
-      }
-    );
+    // this.ordersService.addOrder(order).subscribe(
+      // () => {
+        // this.resetOrder();
+      // }
+    // );
+    this.ordersService.postFireCloudOrder({...order})
+    .then(() => this.resetOrder())
+    .catch(err => console.log(err));
   }
 
   resetOrder(): void{

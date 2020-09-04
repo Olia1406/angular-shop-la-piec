@@ -32,7 +32,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
+
 
 import { SearchPipe } from './shared/pipes/search.pipe';
 import { SearchDiscountPipe } from './shared/pipes/search-discount.pipe';
@@ -41,8 +42,10 @@ import { CounterComponent } from './components/counter/counter.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
-// import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 // import { LOCALE_ID } from '@angular/core';
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+import { loaderConfig } from './preloader-config';
+
 
 
 @NgModule({
@@ -82,8 +85,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     OrderModule,
-    // NgxUiLoaderModule, 
-    // NgxUiLoaderRouterModule
+    NgxUiLoaderModule.forRoot(loaderConfig),
+    NgxUiLoaderRouterModule
     // LOCALE_ID
   ],
   providers: [],

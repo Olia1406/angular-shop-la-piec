@@ -20,14 +20,19 @@ export class HeaderComponent implements OnInit {
   lastName: string;
   // enter: boolean;
   // adm: boolean;
+  loginStatus: boolean;
+  loginUrl: string;
+  loginName: string;
 
   constructor(private ordersService: OrdersService,
-    private modalService: BsModalService,
-    private authService: AuthService) { }
+             private modalService: BsModalService,
+             private authService: AuthService) { }
 
   ngOnInit(): void {
     this.checkBasket();
     this.getLocalProducts();
+    this.checkLogin();
+    this.updateCheckLogin();
   }
 
   private checkBasket(): void {
@@ -57,6 +62,7 @@ export class HeaderComponent implements OnInit {
   }
   loginUser(): void {
     this.authService.login(this.userEmail, this.userPassword);
+    this.resetForm();
     // this.enter = true;
     // this.userEmail == 'admin@gmail.com' ? this.adm = true : this.adm = false;
     this.modalRef.hide();
@@ -65,7 +71,7 @@ export class HeaderComponent implements OnInit {
     this.authService.signUp(this.userEmail, this.userPassword, this.firstName, this.lastName);
     this.resetForm();
     this.switch = !this.switch;
-    // this.modalRef.show();
+    this.modalRef.hide();
   }
   private resetForm(): void {
     this.userEmail = '';
@@ -73,7 +79,34 @@ export class HeaderComponent implements OnInit {
     this.firstName = '';
     this.lastName = '';
   }
+  
+  private updateCheckLogin(): void {
+    this.authService.userStatusChanges.subscribe(
+      () => {
+        this.checkLogin();
+      }
+    );
+  }
 
+  private checkLogin(): void {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const admin = JSON.parse(localStorage.getItem('admin'));
+    if (admin != null && admin.role === 'admin' && admin.access) {
+      this.loginStatus = true;
+      this.loginName = 'адмін';
+      this.loginUrl = 'admin';
+    }
+    else if (user != null && user.role === 'user') {
+      this.loginStatus = true;
+      this.loginName = 'кабінет';
+      this.loginUrl = 'profile';
+    }
+    else {
+      this.loginStatus = false;
+      this.loginName = '';
+      this.loginUrl = '';
+    }
+  }
 
 
 

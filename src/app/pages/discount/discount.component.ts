@@ -16,9 +16,16 @@ export class DiscountComponent implements OnInit {
   }
 
   getUserDiscount(): void {
-    this.dService.getJSONDiscount().subscribe(data => {
-      this.userDiscount = data;
-    });
+    // this.dService.getJSONDiscount().subscribe(data => {
+    // this.userDiscount = data;
+    // });
+    this.dService.getFireCloudDiscount().subscribe(data => {
+      this.userDiscount = data.map(document => {
+        const data = document.payload.doc.data() as IDiscount;
+        const id = document.payload.doc.id;
+        return { id, ...data };
+      })
+    })
   }
 
 }
